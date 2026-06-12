@@ -1,3 +1,5 @@
+package petshop;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -93,7 +95,6 @@ public class TelaPetShop extends JFrame {
 				String nome = campNome.getText().trim();
 				String raca = campRaca.getText().trim();
 				int idade = Integer.parseInt(campIdade.getText());
-				
 
 				if (nome.isEmpty()) {
 					exibirTexto("ERRO: O campo Nome é obrigatório.");
@@ -114,7 +115,19 @@ public class TelaPetShop extends JFrame {
 				limparCampos();
 			}
 		});	
-		
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nome = campNome.getText().trim();
+				if (nome.isEmpty()) {
+					exibirTexto("ERRO: O campo Nome é obrigatório.");
+					return;
+				}
+				
+				repositorio.buscarPorNome(nome);
+				exibirTexto("Pet cadastrado com sucesso!\n\n" );
+				limparCampos();
+			}
+		});	
 
 	}
 
