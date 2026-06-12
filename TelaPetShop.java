@@ -1,4 +1,4 @@
-package petshop;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -108,13 +108,15 @@ public class TelaPetShop extends JFrame {
 					return;
 				}
 
-				Cachorro novo = new Cachorro(nome,idade,raca);
+				Cachorro novo = new Cachorro(nome, idade, raca);
 
 				repositorio.adicionar(novo);
 				exibirTexto("Pet cadastrado com sucesso!\n\n" );
 				limparCampos();
 			}
 		});	
+		
+		// ---- BUSCAR ----
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nome = campNome.getText().trim();
@@ -123,8 +125,14 @@ public class TelaPetShop extends JFrame {
 					return;
 				}
 				
-				repositorio.buscarPorNome(nome);
-				exibirTexto("Pet cadastrado com sucesso!\n\n" );
+				Cachorro c = repositorio.buscarPorNome(nome);
+				if (c != null) {
+				    exibirTexto("Nome: " + c.getNome() + "\n" +
+				                "Raça: " + c.getRaca() + "\n" +
+				                "Idade: " + c.getIdade());
+				} else {
+				    exibirTexto("Cachorro não encontrado.");
+				}
 				limparCampos();
 			}
 		});	
@@ -134,7 +142,7 @@ public class TelaPetShop extends JFrame {
 	// ── Métodos auxiliares ─────────────────────────────────
 
 	/** Exibe texto na área de resultado, substituindo o conteúdo anterior. */
-	private void exibirTexto(String texto) {
+	protected void exibirTexto(String texto) {
 		areaResultado.setText(texto);
 	}
 

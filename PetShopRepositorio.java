@@ -1,15 +1,18 @@
-package petshop;
 
+
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PetShopRepositorio {
+	
+	Cachorro n;
 
-	private final ArrayList<Animal> animais = new ArrayList<>();
+	private final ArrayList<Cachorro> cachorros = new ArrayList<>();
 
 	/** Adiciona um animal à lista. */
-	public void adicionar(Animal a) {
-		animais.add(a);
+	public void adicionar(Cachorro a) {
+		cachorros.add(a);
 	}
 
 	/**
@@ -17,9 +20,14 @@ public class PetShopRepositorio {
 	 * 
 	 * @return o Animal encontrado, ou null se não existir.
 	 */
-	public Animal buscarPorNome(String nome) {
-
-		return null;
+	public Cachorro buscarPorNome(String nome2) {
+		 for (Cachorro a : cachorros) {
+		        if (nome2.equals(a.getNome())) {
+		            return a;
+		            
+		        }}
+		 return null;
+		
 	}
 
 	/**
@@ -32,12 +40,14 @@ public class PetShopRepositorio {
 	}
 
 	/** Retorna a lista completa de animais cadastrados (cópia defensiva). */
-	public ArrayList<Animal> listarTodos() {
-		return animais;
+	public ArrayList<Cachorro> listarTodos() {
+		return cachorros;
 	}
 
 	/** Quantidade de animais cadastrados no repositório. */
 	public int quantidade() {
 		return 0;
 	}
+	
+	
 }

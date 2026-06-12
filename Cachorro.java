@@ -1,3 +1,5 @@
+
+
 public class Cachorro extends Animal implements AtendivelNoEstetica {
 
 	String raca;
@@ -46,7 +48,7 @@ public class Cachorro extends Animal implements AtendivelNoEstetica {
 	public void darBanho(){
 		System.out.printf("dando banho no %s",getNome());
 	}
-	public void cortarUnha() {
+	public void cortarUnhas() {
 		System.out.printf("cortando unhas do %s",getNome());
 	}
 }

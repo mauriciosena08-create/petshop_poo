@@ -1,4 +1,8 @@
-public interface  AtendivelNoEstetica {
+
+
+public interface AtendivelNoEstetica {
+
 	void darBanho();
-	void cortarUnha();
+	void cortarUnhas();
+	
 }
