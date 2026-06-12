@@ -22,6 +22,8 @@ public class Cachorro extends Animal implements AtendivelNoEstetica {
 	public void setRaca(String raca) {
 		this.raca = raca;
 	}
+	
+	
 
 
 

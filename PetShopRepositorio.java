@@ -6,8 +6,6 @@ import java.util.List;
 
 public class PetShopRepositorio {
 	
-	Cachorro n;
-
 	private final ArrayList<Cachorro> cachorros = new ArrayList<>();
 
 	/** Adiciona um animal à lista. */
@@ -20,9 +18,9 @@ public class PetShopRepositorio {
 	 * 
 	 * @return o Animal encontrado, ou null se não existir.
 	 */
-	public Cachorro buscarPorNome(String nome2) {
+	public Cachorro buscarPorNome(String nome) {
 		 for (Cachorro a : cachorros) {
-		        if (nome2.equals(a.getNome())) {
+		        if (nome.equals(a.getNome())) {
 		            return a;
 		            
 		        }}
@@ -36,7 +34,13 @@ public class PetShopRepositorio {
 	 * @return true se encontrou e removeu, false caso contrário.
 	 */
 	public boolean remover(String nome) {
-		return true;
+	    for (int a = 0; a < cachorros.size(); a++) {
+	        if (nome.equals(cachorros.get(a).getNome())) {
+	            cachorros.remove(a);
+	            return true;
+	        } else {return false;}
+	    }
+	    return false;
 	}
 
 	/** Retorna a lista completa de animais cadastrados (cópia defensiva). */

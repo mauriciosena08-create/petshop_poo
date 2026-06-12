@@ -7,6 +7,10 @@ public class Cliente {
 		System.out.println("Nome: " + nome + "\nTelefone: " + telefone);
 	}
 	
+	public Cliente(String nome, String telefone) {
+		this.nome = nome;
+		this.telefone = telefone;
+	}
 	
 	
 	public String getNome() {

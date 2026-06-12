@@ -95,20 +95,31 @@ public class TelaPetShop extends JFrame {
 				String nome = campNome.getText().trim();
 				String raca = campRaca.getText().trim();
 				int idade = Integer.parseInt(campIdade.getText());
+				String nomed = campNomeTutor.getText().trim();
+				String telefone = campTel.getText().trim();
+				
 
 				if (nome.isEmpty()) {
 					exibirTexto("ERRO: O campo Nome é obrigatório.");
 					return;
 				}
-				if (raca.isEmpty())
-					raca = "Indefinida";
+				if (raca.isEmpty()) {
+					raca = "Indefinida";}
 
-				if (idade <= 0) {
+				if (idade <= 0 ) {
 					exibirTexto("Idade invalida");
 					return;
 				}
+				
+				if (nomed.isEmpty()) {
+					nomed = "Sem dono";}
+				
+				if (telefone.isEmpty()) {
+					telefone = "Sem telefone";}
+				
 
 				Cachorro novo = new Cachorro(nome, idade, raca);
+				novo.setDono(new Cliente(nomed, telefone));
 
 				repositorio.adicionar(novo);
 				exibirTexto("Pet cadastrado com sucesso!\n\n" );
@@ -129,14 +140,37 @@ public class TelaPetShop extends JFrame {
 				if (c != null) {
 				    exibirTexto("Nome: " + c.getNome() + "\n" +
 				                "Raça: " + c.getRaca() + "\n" +
-				                "Idade: " + c.getIdade());
-				} else {
+				                "Idade: " + c.getIdade()+ "\n" +
+				                "Dono: " + c.getDono().getNome() + "\n" + 
+				                "Telefone do Dono: " + c.getDono().getTelefone() + "\n");
+		} else {
 				    exibirTexto("Cachorro não encontrado.");
 				}
 				limparCampos();
 			}
 		});	
 
+		// ---- REMOVER ----
+				btnRemover.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						String nome = campNome.getText().trim();
+						if (nome.isEmpty()) {
+							exibirTexto("ERRO: O campo Nome é obrigatório.");
+							return;
+						}
+						
+						boolean d = repositorio.remover(nome);
+						if (d == true) {
+						    exibirTexto("Nome: " + nome + " foi removido");
+						              
+						} else {
+						    exibirTexto("Cachorro não encontrado.");
+						}
+						limparCampos();
+					}
+				});	
+		
+		
 	}
 
 	// ── Métodos auxiliares ─────────────────────────────────
@@ -151,6 +185,8 @@ public class TelaPetShop extends JFrame {
 		campNome.setText("");
 		campRaca.setText("");
 		campIdade.setText("");
+		campTel.setText("");
+		campNomeTutor.setText("");
 		campNome.requestFocus();
 	}
 
